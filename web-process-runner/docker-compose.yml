@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  stubrunner:
+    build:
+      context: .
+      args:
+        VERSION: 1.0.1
+    image: stubs/gr:latest
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    container_name: gr-stubs
