@@ -7,7 +7,7 @@ ARG VERSION
 
 ENV APP_DIR "/stubs-runner"
 
-ENV JAVA_OPTS "-Djava.security.egd=file:/dev/urandom"
+ENV JAVA_OPTS ""
 
 ENV M2_REPO "/root/.m2/repository"
 ENV GROUP_ID "/ie/learn/python/demo"
