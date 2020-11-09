@@ -40,14 +40,14 @@ class StubManager:
         version = os.environ['DEP_VERSION']
 
         port = self.__port
-        command = ["java", "-jar", "./stub-runner.jar",
-                   f"--server.port={port - 1}",
+        command = ["java", "-Djava.security.egd=file:/dev/./urandom",
+                   "-jar", "./stub-runner.jar", f"--server.port={port - 1}",
                    f"--stubrunner.ids={group_id}:{artifact_id}:{version}:{port + 1}",
                    "--stubrunner.stubsMode=LOCAL",
                    f"--stubrunner.repositoryRoot={repository}"]
 
         if 'JAVA_OPTS' in os.environ and os.environ['JAVA_OPTS'].strip():
-            command = command[:1] + [os.environ['JAVA_OPTS']] + command[1:]
+            command = command[:2] + [os.environ['JAVA_OPTS']] + command[2:]
 
         consumer = self.__consumer
         if consumer is not None:
