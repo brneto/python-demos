@@ -69,13 +69,16 @@ class StubManager:
 
     def __log_output(self):
         process = type(self).__process
-        while True:
+
+        exit_code = process.poll()
+        while exit_code is None:
+            self.__print_log(process.stdout)
             exit_code = process.poll()
-            if exit_code is not None:
-                logging.error(f"STUB:exit-code {exit_code}")
-                if not process.stderr.closed:
-                    logging.error(f"STUB:{process.stderr.readline().strip()}")  # Blocking call
-                break
-            else:
-                if not process.stdout.closed:
-                    logging.info(f"STUB:{process.stdout.readline().strip()}")  # Blocking call
+
+        logging.error(f"STUB:exit-code {exit_code}")
+        self.__print_log(process.stderr)
+        self.__print_log(process.stdout)
+
+    def __print_log(self, output):
+        if not output.closed:
+            logging.info(f"STUB:{output.readline().strip()}")  # Blocking call
