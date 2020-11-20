@@ -16,7 +16,7 @@ ENV DEP_VERSION ${VERSION}
 
 ENV NEXUS_REPO "https://localhost/nexus/content/repositories"
 ENV RUNNER_REPO "https://repo1.maven.org/maven2/org/springframework/cloud/spring-cloud-contract-stub-runner-boot"
-ENV RUNNER_VERSION "2.2.4.RELEASE"
+ENV RUNNER_VERSION "2.2.5.RELEASE"
 
 RUN zypper --non-interactive install java-11-openjdk-headless \
 && zypper --non-interactive install shadow \
