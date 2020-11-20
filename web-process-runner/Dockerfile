@@ -47,8 +47,8 @@ COPY Pipfile Pipfile.lock entrypoint.py ${APP_DIR}/
 COPY stub_manager ${APP_DIR}/stub_manager
 WORKDIR ${APP_DIR}
 
-ENV LC_ALL "C.UTF-8"
 ENV LANG "C.UTF-8"
+ENV LC_ALL ${LANG}
 RUN python3 -m pipenv install --deploy --system
 
 # https://github.com/moby/moby/issues/12447#issuecomment-94417192
